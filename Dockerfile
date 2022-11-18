@@ -2,7 +2,7 @@
 FROM ubuntu:focal-20220316
 
 RUN apt update -y \
-    && apt install -y \
+    && DEBIAN_FRONTEND=noninteractive apt install -y \
     libssl-dev python3-dev sshpass apt-transport-https jq moreutils \
     ca-certificates curl gnupg2 software-properties-common python3-pip unzip rsync git \
     && rm -rf /var/lib/apt/lists/*
