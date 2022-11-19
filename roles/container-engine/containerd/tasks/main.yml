@@ -12,6 +12,12 @@
   when:
     - not (is_ostree or (ansible_distribution == "Flatcar Container Linux by Kinvolk") or (ansible_distribution == "Flatcar"))
 
+- name: containerd | Keep runc for already running containers
+  file:
+    src: "{{ runc_bin_dir }}/runc"
+    dest: "/usr/bin/runc"
+    state: link
+
 - name: containerd | Remove containerd repository
   file:
     path: "{{ yum_repo_dir }}/containerd.repo"
